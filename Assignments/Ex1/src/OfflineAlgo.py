@@ -1,15 +1,22 @@
 from Elevator import *
 from callForElevator import *
-import Calls
+from Calls import *
+
 import Building
 import csv
 
 class OfflineAlgo:
 
-    def __init__(self , building):
+    def __init__(self , bJson = "Building.json" ,callsCsv = "Calls.csv" , opCsv = "output.csv"):
+        self.bJson = Building("Building.json")
+        self.callsCsv = Calls.fromCsvToArray("Calls.csv")
+
+
+
+
         # same size array as the numOfElevators.
         # each index represent the "missions" that the elevator got from the allocate func
-        missions = []
+      #  missions = []
 
     def makeCall(self , csvFile):
         callsList = []
@@ -17,9 +24,7 @@ class OfflineAlgo:
             csvReader = csv.reader(file)
             for row in csvReader:
                 callsList.append(callForElevator(row))
-
-
-
+        return callsList
 
     # def allocate(self):
     #
@@ -28,4 +33,8 @@ class OfflineAlgo:
     # def goTo(self):
     #
     # def cmdElevator(self , elev):
+    #
 
+
+file = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Calls_a.csv"
+c = OfflineAlgo.makeCall(file)
