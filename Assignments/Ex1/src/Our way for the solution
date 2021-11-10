@@ -1,0 +1,10 @@
+
+
+calls:
+Each row in the Calls list represent a call.
+We are getting a lot of information
+
+
+if the src floor is lower than the dest floor so the state is UP (1)
+if the src floor is higher than the dest floor so the state is DOWN (-1)
+every floor that the elevator gets to we uploading the elevator current floor
