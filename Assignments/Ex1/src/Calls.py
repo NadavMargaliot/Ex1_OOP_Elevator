@@ -9,10 +9,7 @@ class Calls:
         self.dst = dst
         self.status = status
         self.bestElevator = bestElev
-        # if self.src < self.dst:
-        #     self.upOrDown = 1
-        # elif self.src > self.dst:
-        #     self.upOrDown = -1
+
 
     def fromCsvToArray(self, csvFile):
         callsList = []
@@ -23,7 +20,17 @@ class Calls:
                 callsList.append(call)
         return callsList
 
+    def getStateOfCall(self):
+        if self.src < self.dst:
+            return 1
+        else:
+            return -1
 
+
+# if self.src < self.dst:
+#     self.upOrDown = 1
+# elif self.src > self.dst:
+#     self.upOrDown = -1
 
     # def __repr__(self):
     #     # return f'{self.time} {self.src} {self.dst}'

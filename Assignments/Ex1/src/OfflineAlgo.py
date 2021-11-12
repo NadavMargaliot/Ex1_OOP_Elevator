@@ -4,13 +4,11 @@ from Calls import *
 from ElevatorMissions import *
 from Building import *
 
-
 import Building
 import csv
 
 
 class OfflineAlgo:
-
     def __init__(self, building="Building.json", calls="CallsList.csv", opCsv="output.csv"):
         self.building = Building("Building.json")
         self.callsList = Calls.fromCsvToArray("Calls.csv")
@@ -30,15 +28,18 @@ class OfflineAlgo:
     #             callsList.append(callForElevator(row))
     #     return callsList
 
-    # def allocate(self):
+    # def allocate(self ):
 
     #
     # def totalTime(self, elevatorPos , srcCall , elevator):
 
     #
-    def totalTime(self , src , ):
 
-    def fromArrayToCsv(self , callsList):
+    def totalTime(self , src , elevator):
+        self.elev = Elevator
+        elevator
+
+    def fromArrayToCsv(callsList):
         filename = 'output.csv'
         all = []
         for i in callsList:
@@ -62,6 +63,10 @@ if __name__ == '__main__':
    #
 
 
+
     r = OfflineAlgo
-    r.fromArrayToCsv(r , callsList)
+    r.fromArrayToCsv(callsList)
+
+    #print(len(callsList))
+
 

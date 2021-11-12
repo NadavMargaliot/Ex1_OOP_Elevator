@@ -19,7 +19,7 @@ class Building:
         if i >= 0 and i < self.numOfElevators:
             return i
 
-    def getNumOfElevators(self):
+    def getNumOfElevators(self) -> int:
         return self.numOfElevators
 
 
