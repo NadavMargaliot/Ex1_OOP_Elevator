@@ -30,8 +30,8 @@ if __name__ == '__main__':
 
     b5 = Building(file)
     b2 = Building(file2)
-# for i in b.ElevatorList:
-#     print(i.__str__())
+    for i in b5.ElevatorList:
+        print(i.__str__())
 # print(b5.minFloor)
 # print(b5.numOfElevators)
 # print(b5.getElevator(9))

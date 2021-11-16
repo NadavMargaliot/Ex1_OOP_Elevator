@@ -69,3 +69,10 @@ class Elevator:
 
     def setPos(self , newPos):
         self.pos = newPos
+
+    def addCallToElevator(self , callSrc , callDst):
+        elevCalls = self.elevCalls
+        if callSrc not in elevCalls:
+            elevCalls.append(callSrc)
+        if callDst not in elevCalls:
+            elevCalls.append(callDst)
