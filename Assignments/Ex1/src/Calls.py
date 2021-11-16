@@ -1,4 +1,5 @@
 import csv
+import random
 
 
 class Calls:
@@ -8,7 +9,7 @@ class Calls:
         self.src = src
         self.dst = dst
         self.status = status
-        self.bestElevator = bestElev
+        self.bestElevator = 0
 
 
     def fromCsvToArray(self, csvFile):

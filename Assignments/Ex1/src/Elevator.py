@@ -25,8 +25,39 @@ class Elevator:
                f' max floor: {self.maxFloor}, close time: {self.closeTime}, open time: {self.openTime},' \
                f' start time: {self.startTime}, stop time: {self.stopTime}, state: {self.state}, pos: {self.pos}\n'
 
-    # def setState(self , state):
-    #     self.state = state
+    def getPos(self):
+        return self.pos
 
-    # def goTo(self, floor):
+    def getCloseTime(self):
+        return self.closeTime
 
+    def getOpenTime(self):
+        return self.openTime
+
+    def getSpeed(self):
+        return self.speed
+
+    def getStartTime(self):
+        return self.startTime
+
+    def getStopTime(self):
+        return self.stopTime
+
+    def time(self , callSrc):
+        open = self.openTime
+        close = self.closeTime
+        start = self.startTime
+        stop = self.stopTime
+        df = abs(callSrc - self.pos)
+        speed = self.speed
+        return close + start + (df / speed) + stop + open
+
+    def didElevatorPassUp(self, callSrc):
+        if callSrc > self.pos:
+            return True
+        return False
+
+    def didElevatorPassDown(self, callSrc):
+        if callSrc < self.pos:
+            return True
+        return False
