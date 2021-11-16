@@ -14,6 +14,8 @@ class Elevator:
         self.stopTime = float(dict["_stopTime"])
         self.state = 0 # elevator in level state
         self.pos = 0 # elevator will start in 0 floor
+        self.elevCalls = []
+        self.currTime = 0
 
     # @classmethod
     # def from_json(cls, json_string):
@@ -24,6 +26,9 @@ class Elevator:
         return f'Elevator id: {self.id}, speed: {self.speed}, min floor: {self.minFloor},' \
                f' max floor: {self.maxFloor}, close time: {self.closeTime}, open time: {self.openTime},' \
                f' start time: {self.startTime}, stop time: {self.stopTime}, state: {self.state}, pos: {self.pos}\n'
+
+    def getElevCalls(self):
+        return self.elevCalls
 
     def getPos(self):
         return self.pos
@@ -43,7 +48,7 @@ class Elevator:
     def getStopTime(self):
         return self.stopTime
 
-    def time(self , callSrc):
+    def timeFromSrc(self , callSrc):
         open = self.openTime
         close = self.closeTime
         start = self.startTime
@@ -61,3 +66,6 @@ class Elevator:
         if callSrc < self.pos:
             return True
         return False
+
+    def setPos(self , newPos):
+        self.pos = newPos

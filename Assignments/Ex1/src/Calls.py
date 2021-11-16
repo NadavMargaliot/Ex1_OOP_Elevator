@@ -9,7 +9,7 @@ class Calls:
         self.src = src
         self.dst = dst
         self.status = status
-        self.bestElevator = 0
+        self.bestElevator = bestElev
 
 
     def fromCsvToArray(self, csvFile):
@@ -33,10 +33,10 @@ class Calls:
 # elif self.src > self.dst:
 #     self.upOrDown = -1
 
-    # def __repr__(self):
-    #     # return f'{self.time} {self.src} {self.dst}'
-    #     return f'time: {self.time} src: {self.src} ' \
-    #            f'dst: {self.dst} status:{self.status} best elevator:{self.bestElevator}\n'
+    def __repr__(self):
+        # return f'{self.time} {self.src} {self.dst}'
+        return f'time: {self.time} src: {self.src} ' \
+               f'dst: {self.dst} status:{self.status} best elevator:{self.bestElevator}'
 
 
 file = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Calls_a.csv"

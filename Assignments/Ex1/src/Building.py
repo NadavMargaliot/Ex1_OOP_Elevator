@@ -23,16 +23,13 @@ class Building:
         return self.numOfElevators
 
 
+if __name__ == '__main__':
 
+    file = r"/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/src/B5.json"
+    file2 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B2.json"
 
-
-
-
-file = r"/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/src/B5.json"
-file2 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B2.json"
-
-b5 = Building(file)
-b2 = Building(file2)
+    b5 = Building(file)
+    b2 = Building(file2)
 # for i in b.ElevatorList:
 #     print(i.__str__())
 # print(b5.minFloor)
@@ -48,5 +45,3 @@ b2 = Building(file2)
 # print(b5.ElevatorList)
 # print(b5.numOfElevators)
 # print(b5.minFloor)
-
-
