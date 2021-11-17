@@ -80,11 +80,13 @@ def allocateElevator(csvFile, jFile):
     minTime = 99999999999
     sizeFloors = abs(int(building.maxFloor) - int(building.minFloor))
     between0To15Floors = sizeFloors > 0 and sizeFloors < 15 # B1 , B2
-    moreThan100 = sizeFloors > 100 # B3 , B4 , B5
+    moreThan100Floors = sizeFloors > 100 # B3 , B4 , B5
+
     moreThan8Elevator = size > 8 # B5
     between4To8Elevator = size > 4 and size < 8 # B4
     oneElevator = size == 1 # B1
     between2To4Elevator = size > 1 and size < 4 # B2 , B3
+
     callsAround1000 = len(callsList) >= 999 # b ,c , d
     callsAround100 = len(callsList) <= 101 # a
     representElevator = []

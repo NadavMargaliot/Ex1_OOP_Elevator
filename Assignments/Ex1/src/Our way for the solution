@@ -11,13 +11,7 @@ every floor that the elevator gets to we uploading the elevator current floor
 
 
 algo
-we have a array of all the calls. each index is a call.
-we have a array of all the elevators. each index is a elevator.
-we have a array where we keeping all the calls for each elevator(elevatorMission).
+if more than 8:
 
-we have a array with the size of the calls. the array will start all false.
-each call that sent to a elevator will become true in the array
-
-if a call match a elevator, so we adding the call to the elevatorMission in the elevator place
 
 allocate:
