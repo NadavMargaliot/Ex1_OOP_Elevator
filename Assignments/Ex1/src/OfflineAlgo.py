@@ -54,25 +54,43 @@ class Elevator:
 #     speed = self.speed
 #     return close + start + (df / speed) + stop + open
 
+def reFill(array ,times , sizeOfElevs):
+    for j in range(0 ,times):
+        for i in range(0 , sizeOfElevs):
+            array.append(i)
+
+def addBestToCallAndRemoveFromArray(array, call, best):
+    call.bestElevator = best
+    array.remove(int(best))
 
 def allocateElevator(csvFile, jFile):
     resultCallList = fromCsvToArray(csvFile)
     callsList = fromCsvToArray(csvFile)
     building = Building(jFile)
     size = building.numOfElevators
+    if size == 1:
+        for i in callsList:
+            i.bestElevator = 0
+        fromArrayToCsv(callsList)
+        return
+
+
+
+
     minTime = 99999999999
-    moreThan8 = size > 8
-    between4To8 = size > 4 and size < 8
-    oneElevator = size == 1
-    between2To4 = size > 1 and size < 4
-    callsAround1000 = len(callsList) >= 999
-    callsAround100 = len(callsList) >= 99
-    representElevator = []
-    if size < 6:
-        for k in range(0,10):
-            for i in range(0 , building.numOfElevators):
-                representElevator.append(i)
     sizeFloors = abs(int(building.maxFloor) - int(building.minFloor))
+    between0To15Floors = sizeFloors > 0 and sizeFloors < 15 # B1 , B2
+    moreThan100 = sizeFloors > 100 # B3 , B4 , B5
+    moreThan8Elevator = size > 8 # B5
+    between4To8Elevator = size > 4 and size < 8 # B4
+    oneElevator = size == 1 # B1
+    between2To4Elevator = size > 1 and size < 4 # B2 , B3
+    callsAround1000 = len(callsList) >= 999 # b ,c , d
+    callsAround100 = len(callsList) <= 101 # a
+    representElevator = []
+    reFill(representElevator, 1,  size)
+
+
 
 
 
@@ -80,34 +98,30 @@ def allocateElevator(csvFile, jFile):
         time = 0
         for i in callsList:
             floors = abs(int(i.src) - int(i.dst))
-            if building.numOfElevators != 1:
-                if len(representElevator) != 0:
-                    # send the fastest elevator for a big mission
-                    if floors > sizeFloors / 2 and len(representElevator) > 1:
-                        speedOfElev = 0
-                        for sp in representElevator:
-                            if building.ElevatorList[sp].speed > speedOfElev:
-                                speedOfElev = building.ElevatorList[sp].speed
-                                chosen = int(building.ElevatorList[sp].id)
-                        i.bestElevator = chosen
-                        representElevator.remove(int(chosen))
-                    else:
-                        i.bestElevator = random.choice(representElevator)
-                        representElevator.remove(int(i.bestElevator))
+            if len(representElevator) != 0:
+                # send the fastest elevator for a big mission
+                if floors > sizeFloors / 2 and len(representElevator) > 1:
+                    speedOfElev = 0
+                    for sp in representElevator:
+                        if building.ElevatorList[sp].speed > speedOfElev:
+                            speedOfElev = building.ElevatorList[sp].speed
+                            chosen = int(building.ElevatorList[sp].id)
+                   # addBestToCallAndRemoveFromArray(representElevator, i ,chosen)
+                    i.bestElevator = chosen
+                    representElevator.remove(int(chosen))
                 else:
-                    if size < 6:
-                        for d in range(0 , 10):
-                            for k in range(0,size):
-                                representElevator.append(k)
-                    else:
-                        for k in range(0, size):
-                            representElevator.append(k)
+                   # addBestToCallAndRemoveFromArray(representElevator, i ,i.bestElevator)
                     i.bestElevator = random.choice(representElevator)
                     representElevator.remove(int(i.bestElevator))
-            if size == 1:
-                i.bestElevator = 0
+            else:
+                if size < 6:
+                    reFill(representElevator,1, size)
+                else:
+                    reFill(representElevator,1, size)
+             #   addBestToCallAndRemoveFromArray(representElevator, i , i.bestElevator)
+                i.bestElevator = random.choice(representElevator)
+                representElevator.remove(int(i.bestElevator))
             elev = building.ElevatorList[i.bestElevator]
-           # elev.count += 1
             speed = elev.speed
             stop = elev.stopTime
             start = elev.startTime
@@ -124,23 +138,6 @@ def allocateElevator(csvFile, jFile):
 
     fromArrayToCsv(resultCallList)
 
-    # def allocate(self):
-    #     allocateElevator = self.callsList
-    #     elevatorMissions = self.elevatorCalls
-    #     building = self.building
-    #     for i in allocateElevator:
-    #         if i.src < i.dst:
-    #             for j in building['_elevators']:
-    #                 minTime = j.timeFromSrc()
-    #                 if j.timeFromSrc() < minTime:
-    #                     elevNum = j
-    #                 self.addCallToElevator(elevNum, i.src, i.dst)
-    #                 allocateElevator[i][5] = elevNum
-    #                 # building.getElevator(elevNum).setPos(elevNum)
-    #     return allocateElevator
-
-    # same size array as the numOfElevators.
-    # each index represent the "missions" that the elevator got from the allocate func
 
 
 def fromCsvToArray(csvFile):
@@ -190,7 +187,7 @@ def main():
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
 
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-    allocateElevator(calls_a, B3)
+    allocateElevator(calls_d, B5)
 
 
 
