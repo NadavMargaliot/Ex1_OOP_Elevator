@@ -40,6 +40,9 @@ class Elevator:
         self.elevCalls = []
         self.currTime = 0
 
+    def setPos(self , newPos):
+        self.pos = newPos
+
 
 # def timeFromSrc(self, callSrc):
 #     open = self.openTime
@@ -63,14 +66,15 @@ def allocateElevator(csvFile , jFile):
         for i in callsList:
             i.bestElevator = int(random.randint(0 , size - 1))
             elev = building.ElevatorList[i.bestElevator]
-            floors = abs(int(i.src) - int(elev.pos))
+            floors = abs(int(i.src) - int(i.dst))
             speed = elev.speed
             stop = elev.stopTime
             start = elev.startTime
             open = elev.openTime
             close = elev.closeTime
             df = abs(int(elev.pos) - int(i.src))
-            time +=  ((floors / speed) + df * (close + open + stop + start))
+            elev.setPos(int(i.src))
+            time +=  ((floors / speed) + (close + open + stop + start))
         if time < minTime:
             resultCallList = callsList
             minTime = time
