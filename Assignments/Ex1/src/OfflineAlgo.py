@@ -65,7 +65,7 @@ def allocateElevator(csvFile, jFile):
     for i in range(0 , building.numOfElevators):
         nums.append(i)
 
-    for j in range(0, 100):
+    for j in range(0, 1):
         time = 0
         for i in callsList:
             if building.numOfElevators != 1:
@@ -91,6 +91,8 @@ def allocateElevator(csvFile, jFile):
             df = abs(int(elev.pos) - int(i.src))
             elev.setPos(int(i.src))
             time += ((floors / speed) + df * (close + open + stop + start))
+
+
         if time / len(callsList) < minTime:
             resultCallList = callsList
             minTime = time / len(callsList)
@@ -154,7 +156,7 @@ def main():
 
     calls_d = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Calls_d.csv"
     calls_c = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Calls_c.csv"
-    calls_b = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Caals_b.csv"
+    calls_b = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Calls_b.csv"
     calls_a = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Calls/Calls_a.csv"
 
     B1 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B1.json"
@@ -163,7 +165,7 @@ def main():
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
 
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-    allocateElevator(calls_d, B5)
+    allocateElevator(calls_b, B5)
 
 
 if __name__ == '__main__':
