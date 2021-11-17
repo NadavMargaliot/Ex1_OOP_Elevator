@@ -16,6 +16,7 @@ class Elevator:
         self.pos = 0 # elevator will start in 0 floor
         self.elevCalls = []
         self.currTime = 0
+        self.count = 0
 
     # @classmethod
     # def from_json(cls, json_string):
