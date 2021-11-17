@@ -61,9 +61,17 @@ def allocateElevator(csvFile, jFile):
     building = Building(jFile)
     size = building.numOfElevators
     minTime = 99999999999
+    moreThan8 = size > 8
+    between4To8 = size > 4 and size < 8
+    oneElevator = size == 1
+    between2To4 = size > 1 and size < 4
+    callsAround1000 = len(callsList) >= 999
+    callsAround100 = len(callsList) >= 99
     representElevator = []
-    for i in range(0 , building.numOfElevators):
-        representElevator.append(i)
+    if size < 6:
+        for k in range(0,10):
+            for i in range(0 , building.numOfElevators):
+                representElevator.append(i)
     sizeFloors = abs(int(building.maxFloor) - int(building.minFloor))
 
 
@@ -74,6 +82,7 @@ def allocateElevator(csvFile, jFile):
             floors = abs(int(i.src) - int(i.dst))
             if building.numOfElevators != 1:
                 if len(representElevator) != 0:
+                    # send the fastest elevator for a big mission
                     if floors > sizeFloors / 2 and len(representElevator) > 1:
                         speedOfElev = 0
                         for sp in representElevator:
@@ -86,8 +95,13 @@ def allocateElevator(csvFile, jFile):
                         i.bestElevator = random.choice(representElevator)
                         representElevator.remove(int(i.bestElevator))
                 else:
-                    for k in range(0,size):
-                        representElevator.append(k)
+                    if size < 6:
+                        for d in range(0 , 10):
+                            for k in range(0,size):
+                                representElevator.append(k)
+                    else:
+                        for k in range(0, size):
+                            representElevator.append(k)
                     i.bestElevator = random.choice(representElevator)
                     representElevator.remove(int(i.bestElevator))
             if size == 1:
@@ -176,7 +190,8 @@ def main():
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
 
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-    allocateElevator(calls_c, B5)
+    allocateElevator(calls_a, B3)
+
 
 
 if __name__ == '__main__':
