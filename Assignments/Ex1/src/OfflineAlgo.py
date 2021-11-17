@@ -61,28 +61,39 @@ def allocateElevator(csvFile, jFile):
     building = Building(jFile)
     size = building.numOfElevators
     minTime = 99999999999
-    nums = []
+    representElevator = []
     for i in range(0 , building.numOfElevators):
-        nums.append(i)
+        representElevator.append(i)
+    sizeFloors = abs(int(building.maxFloor) - int(building.minFloor))
 
-    for j in range(0, 1):
+
+
+    for j in range(0, 100):
         time = 0
         for i in callsList:
+            floors = abs(int(i.src) - int(i.dst))
             if building.numOfElevators != 1:
-                # i.bestElevator = int(random.randint(0, size - 1))
-                if len(nums) != 0:
-                    i.bestElevator = random.choice(nums)
-                    nums.remove(int(i.bestElevator))
+                if len(representElevator) != 0:
+                    if floors > sizeFloors / 2 and len(representElevator) > 1:
+                        speedOfElev = 0
+                        for sp in representElevator:
+                            if building.ElevatorList[sp].speed > speedOfElev:
+                                speedOfElev = building.ElevatorList[sp].speed
+                                chosen = int(building.ElevatorList[sp].id)
+                        i.bestElevator = chosen
+                        representElevator.remove(int(chosen))
+                    else:
+                        i.bestElevator = random.choice(representElevator)
+                        representElevator.remove(int(i.bestElevator))
                 else:
                     for k in range(0,size):
-                        nums.append(k)
-                    i.bestElevator = random.choice(nums)
-                    nums.remove(int(i.bestElevator))
+                        representElevator.append(k)
+                    i.bestElevator = random.choice(representElevator)
+                    representElevator.remove(int(i.bestElevator))
             if size == 1:
                 i.bestElevator = 0
             elev = building.ElevatorList[i.bestElevator]
            # elev.count += 1
-            floors = abs(int(i.src) - int(i.dst))
             speed = elev.speed
             stop = elev.stopTime
             start = elev.startTime
@@ -165,7 +176,7 @@ def main():
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
 
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-    allocateElevator(calls_b, B5)
+    allocateElevator(calls_c, B5)
 
 
 if __name__ == '__main__':
