@@ -90,11 +90,20 @@ def allocateElevator(csvFile, jFile):
     callsAround1000 = len(callsList) >= 999 # b ,c , d
     callsAround100 = len(callsList) <= 101 # a
     representElevator = []
-    reFill(representElevator, 1,  size)
-
-
-
-
+    if callsAround1000:
+        if moreThan8Elevator:
+            reFill(representElevator,3,size)
+        elif between4To8Elevator:
+            reFill(representElevator ,4 , size)
+        elif between2To4Elevator:
+            reFill(representElevator, 10, size)
+    else: # calls around 100
+        if moreThan8Elevator:
+            reFill(representElevator, 1, size)
+        elif between4To8Elevator:
+            reFill(representElevator, 3, size)
+        elif between2To4Elevator:
+            reFill(representElevator, 4, size)
 
     for j in range(0, 100):
         time = 0
@@ -102,7 +111,11 @@ def allocateElevator(csvFile, jFile):
             floors = abs(int(i.src) - int(i.dst))
             if len(representElevator) != 0:
                 # send the fastest elevator for a big mission
-                if floors > sizeFloors / 2 and len(representElevator) > 1:
+                if between0To15Floors:
+                    highMission = sizeFloors / 2
+                elif moreThan100Floors:
+                    highMission = sizeFloors / 5
+                if floors > highMission and len(representElevator) > 1:
                     speedOfElev = 0
                     for sp in representElevator:
                         if building.ElevatorList[sp].speed > speedOfElev:
@@ -116,10 +129,20 @@ def allocateElevator(csvFile, jFile):
                     i.bestElevator = random.choice(representElevator)
                     representElevator.remove(int(i.bestElevator))
             else:
-                if size < 6:
-                    reFill(representElevator,1, size)
-                else:
-                    reFill(representElevator,1, size)
+                if callsAround1000:
+                    if moreThan8Elevator:
+                        reFill(representElevator, 3, size)
+                    elif between4To8Elevator:
+                        reFill(representElevator, 4, size)
+                    elif between2To4Elevator:
+                        reFill(representElevator, 10, size)
+                else:  # calls around 100
+                    if moreThan8Elevator:
+                        reFill(representElevator, 1, size)
+                    elif between4To8Elevator:
+                        reFill(representElevator, 3, size)
+                    elif between2To4Elevator:
+                        reFill(representElevator, 4, size)
              #   addBestToCallAndRemoveFromArray(representElevator, i , i.bestElevator)
                 i.bestElevator = random.choice(representElevator)
                 representElevator.remove(int(i.bestElevator))
@@ -189,7 +212,7 @@ def main():
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
 
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-    allocateElevator(calls_d, B5)
+    allocateElevator(calls_b, B3)
 
 
 
