@@ -127,7 +127,7 @@ def main():
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
     allocateElevator(calls_d, B5)
-
+    print("hello")
 
 if __name__ == '__main__':
     main()
