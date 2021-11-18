@@ -1,6 +1,3 @@
-import json
-from typing import Any
-
 
 class Elevator:
     def __init__(self, dict):

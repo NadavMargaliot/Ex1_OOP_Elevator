@@ -1,6 +1,3 @@
-import csv
-import random
-
 
 class Calls:
     def __init__(self,someString="", time=0, src=0, dst=0, status=0, bestElev=0):
