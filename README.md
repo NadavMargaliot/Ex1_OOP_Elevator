@@ -1,7 +1,7 @@
 # Ex1_OOP_Elevator
 second assignment 
 
-# Offline Algorithm
+# Offline Algorithm Foe Elevators
 The task of this program is to allocate a call for an elevator to the "best" elevator. 
 The main target of this project is to minimize the average waiting time for an elevator per person.
 We will deal with an offline case, which means we are getting all the calls for the elevator before we are starting to allocate a call.
