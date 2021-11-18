@@ -112,23 +112,8 @@ def main():
     B3 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B3.json"
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-   # allocateElevator(calls_d, B5)
+    allocateElevator(calls_d, B5)
 
-
-    # if callsAround1000:
-    #     if moreThan8Elevator:
-    #         reFill(representElevator, int((1000 / 50) / (size)), size)
-    #     elif between4To8Elevator:
-    #         reFill(representElevator, int((1000 / 50) / (size)), size)
-    #     elif between2To4Elevator:
-    #         reFill(representElevator, int((1000 / 50) / (size)), size)
-    # else:  # calls around 100
-    #     if moreThan8Elevator:
-    #         reFill(representElevator, int(100 / (size * size)), size)
-    #     elif between4To8Elevator:
-    #         reFill(representElevator, int(100 / (size * size)), size)
-    #     elif between2To4Elevator:
-    #         reFill(representElevator, int(100 / (size * size)), size)
 
 if __name__ == '__main__':
     main()
