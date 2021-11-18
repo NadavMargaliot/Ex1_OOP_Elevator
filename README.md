@@ -50,6 +50,8 @@ As we can see the "represent elevator" array will become empty! Now whenever the
 With this program we can be sure that a call will always have an elevator to allocate to.
 
 Diagram of the classes:
+
+
 ![WhatsApp Image 2021-11-18 at 20 26 18](https://user-images.githubusercontent.com/84914845/142474852-654ee94e-9bfa-4e54-8d97-547f3414a705.jpeg)
 
 
