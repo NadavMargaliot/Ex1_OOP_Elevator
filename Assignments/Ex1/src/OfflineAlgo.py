@@ -8,6 +8,7 @@ def reFill(array, times, sizeOfElevs):
         for i in range(0, sizeOfElevs):
             array.append(i)
 
+# This function makes a calls array from a csv file.
 def fromCsvToArray(csvFile):
     callsList = []
     with open(csvFile) as file:
@@ -17,6 +18,7 @@ def fromCsvToArray(csvFile):
             callsList.append(call)
     return callsList
 
+# This function makes a csv file from a calls array.
 def fromArrayToCsv(callsList):
     filename = 'output.csv'
     all = []
@@ -26,6 +28,9 @@ def fromArrayToCsv(callsList):
         csvWriter = csv.writer(file)
         csvWriter.writerows(all)
 
+# This function gets a csv file represents a calls list
+# And json file represents a building.
+# this function allocates ALL the calls!
 def allocateElevator(csvFile, jFile):
     callsList = fromCsvToArray(csvFile)
     building = Building(jFile)
@@ -107,8 +112,8 @@ def main():
     B3 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B3.json"
     B4 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B4.json"
     B5 = "/Users/adielbenmeir/PycharmProjects/OOP_2021/Assignments/Ex1/data/Ex1_input/Ex1_Buildings/B5.json"
-    allocateElevator(calls_d, B5)
-    print("hello")
+   # allocateElevator(calls_d, B5)
+
 
     # if callsAround1000:
     #     if moreThan8Elevator:
