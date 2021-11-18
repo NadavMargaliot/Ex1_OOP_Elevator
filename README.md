@@ -1,7 +1,7 @@
 # Ex1_OOP_Elevator
 second assignment 
 
-# Offline Algorithm Foe Elevators
+# Offline Algorithm For Elevators
 The task of this program is to allocate a call for an elevator to the "best" elevator. 
 The main target of this project is to minimize the average waiting time for an elevator per person.
 We will deal with an offline case, which means we are getting all the calls for the elevator before we are starting to allocate a call.
@@ -27,8 +27,8 @@ We didn't want there to be any chance that elevator 'a' will have 400 missions, 
 We undersood that there is a difference if there are 100 calls or 1000 calls.
 And a task with 100 calls with 10 elevators are not the same as a task with 100 calls with 2 elevators!
 Let's say there is 100 calls with 2 elevators. There is a good chance that out of 10 calls it will be smarter for elevator 1 to take them,
-so for this case we will fill the "represent elevator array" with 10 numbers of each elevator [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1] (10 times).
-Let's say there is 100 calls with 10 elevators. so the "represent elevator array" will be filled with [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9] (twice).
+so for this case we will fill the "represent elevator" array with 10 numbers of each elevator [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1] (10 times).
+Let's say there is 100 calls with 10 elevators. so the "represent elevator" array will be filled with [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9] (twice).
 
 ### High Mission Call:
 High mission call is a call that the different amount of floors between the source floor to the destination floor is high.
