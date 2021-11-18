@@ -1,58 +1,8 @@
 from Calls import *
-from Building import *
+from Building import Building
 import random
-import Building
+from Elevator import Elevator
 import csv
-
-
-# def addCallToElevator(self, elevNum, callSrc, callDst):
-#     elevCalls = self.elevatorCalls[elevNum]
-#     if callSrc not in elevCalls:
-#         elevCalls.append(callSrc)
-#     if callDst not in elevCalls:
-#         elevCalls.append(callDst)
-
-class Building:
-    def __init__(self, j_file):
-        with open(j_file, 'r') as json_file:
-            jsonLoad = json.load(json_file)
-            self.minFloor = jsonLoad['_minFloor']
-            self.maxFloor = jsonLoad['_maxFloor']
-            elevatorList = []
-            for e in jsonLoad['_elevators']:
-                elevatorList.append(Elevator(e))
-            self.ElevatorList = elevatorList
-            self.numOfElevators = len(elevatorList)
-        json_file.close()
-
-
-class Elevator:
-    def __init__(self, dict):
-        self.id = int(dict["_id"])
-        self.speed = float(dict["_speed"])
-        self.minFloor = int(dict["_minFloor"])
-        self.maxFloor = int(dict["_maxFloor"])
-        self.closeTime = float(dict["_closeTime"])
-        self.openTime = float(dict["_openTime"])
-        self.startTime = float(dict["_startTime"])
-        self.stopTime = float(dict["_stopTime"])
-        self.state = 0  # elevator in level state
-        self.pos = 0  # elevator will start in 0 floor
-        self.elevCalls = []
-        self.currTime = 0
-
-    def setPos(self, newPos):
-        self.pos = newPos
-
-
-# def timeFromSrc(self, callSrc):
-#     open = self.openTime
-#     close = self.closeTime
-#     start = self.startTime
-#     stop = self.stopTime
-#     df = abs(callSrc - self.pos)
-#     speed = self.speed
-#     return close + start + (df / speed) + stop + open
 
 def reFill(array, times, sizeOfElevs):
     for j in range(0, times):
@@ -66,7 +16,6 @@ def addBestToCallAndRemoveFromArray(array, call, best):
 
 
 def allocateElevator(csvFile, jFile):
-    resultCallList = fromCsvToArray(csvFile)
     callsList = fromCsvToArray(csvFile)
     building = Building(jFile)
     size = building.numOfElevators
@@ -75,7 +24,6 @@ def allocateElevator(csvFile, jFile):
             i.bestElevator = 0
         fromArrayToCsv(callsList)
         return
-    minTime = 99999999999
     sizeFloors = abs(int(building.maxFloor) - int(building.minFloor))
     between0To15Floors = sizeFloors > 0 and sizeFloors < 15  # B1 , B2
     moreThan100Floors = sizeFloors > 100  # B3 , B4 , B5
@@ -110,7 +58,7 @@ def allocateElevator(csvFile, jFile):
             if between0To15Floors:
                 highMission = sizeFloors / 2
             elif moreThan100Floors:
-                highMission = sizeFloors / 5
+                highMission = sizeFloors / 10
             if floors > highMission and len(representElevator) > 1:
                 speedOfElev = 0
                 for sp in representElevator:
@@ -142,20 +90,6 @@ def allocateElevator(csvFile, jFile):
             #   addBestToCallAndRemoveFromArray(representElevator, i , i.bestElevator)
             i.bestElevator = random.choice(representElevator)
             representElevator.remove(int(i.bestElevator))
-        elev = building.ElevatorList[i.bestElevator]
-        speed = elev.speed
-        stop = elev.stopTime
-        start = elev.startTime
-        open = elev.openTime
-        close = elev.closeTime
-        df = abs(int(elev.pos) - int(i.src))
-        elev.setPos(int(i.src))
-       # time += ((floors / speed) + df * (close + open + stop + start))
-
-        # if time / len(callsList) < minTime:
-        #     resultCallList = callsList
-        #     minTime = time / len(callsList)
-
     fromArrayToCsv(callsList)
 
 
