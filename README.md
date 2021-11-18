@@ -1,7 +1,7 @@
 # Ex1_OOP_Elevator
 second assignment 
 
-
+# Offline Algorithm For Elevators
 The task of this program is to allocate a call for an elevator to the "best" elevator. 
 The main target of this project is to minimize the average waiting time for an elevator per person.
 We will deal with an offline case, which means we are getting all the calls for the elevator before we are starting to allocate a call.
@@ -16,21 +16,21 @@ Building - minimum floor , maximum floor , elevators.
 Elevator - speed , minimum floor , maximum floor and more.
 Each elevator has a different speed!
 
-# The Algorithm:
+## The Algorithm:
 So we have the calls list and the building that we are working with.
 First of all if the building only has 1 elevator so it's simple. Each call will allocate the same elevator.
 Let's talk about what's happening when we have more than 1 elevator.
 
-## Represent Elevator Array:
+### Represent Elevator Array:
 Our main thought was how to make sure that all the missions are split close to equaly between the elevators.
 We didn't want there to be any chance that elevator 'a' will have 400 missions, while elevator 'b' has 30 missions.
 We undersood that there is a difference if there are 100 calls or 1000 calls.
 And a task with 100 calls with 10 elevators are not the same as a task with 100 calls with 2 elevators!
 Let's say there is 100 calls with 2 elevators. There is a good chance that out of 10 calls it will be smarter for elevator 1 to take them,
-so for this case we will fill the "represent elevator array" with 10 numbers of each elevator [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1] (10 times).
-Let's say there is 100 calls with 10 elevators. so the "represent elevator array" will be filled with [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9] (twice).
+so for this case we will fill the "represent elevator" array with 10 numbers of each elevator [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1] (10 times).
+Let's say there is 100 calls with 10 elevators. so the "represent elevator" array will be filled with [0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9] (twice).
 
-## High Mission Call:
+### High Mission Call:
 High mission call is a call that the different amount of floors between the source floor to the destination floor is high.
 But what is considered high? maybe the amount of floors in the building is divided by 2?
 So for a building with 12 floors a high mission call will be a call for more than 6 floors.
@@ -38,7 +38,7 @@ But for a building with 110 floors it will be more than 55 floors!
 Of course that a mission of 20+ floors needs to be considered as a "high mission call".
 So we saw that we need to make a "high mission call" depending on the number of floors in the current building.
 
-## Fastest Elevator:
+### Fastest Elevator:
 So after we know what a "high mission call" is, we can see that it is very intuative to send this call a FAST elevator.
 Now if the current call is considered a "high mission call" the call will allocate the fastest elevator from the "represent elevator" array.
 
@@ -49,4 +49,9 @@ Otherwise the call is not a "high mission call" and then we can just allocate th
 As we can see the "represent elevator" array will become empty! Now whenever the array is empty we'll refill the array the same way as it wasfilled above.
 With this program we can be sure that a call will always have an elevator to allocate to.
 
-![D offline](https://user-images.githubusercontent.com/84914845/142471653-41b577fc-6139-4dfb-a9ac-08b26a7f43ff.png)
+Diagram of the classes:
+
+
+![WhatsApp Image 2021-11-18 at 20 26 18](https://user-images.githubusercontent.com/84914845/142474852-654ee94e-9bfa-4e54-8d97-547f3414a705.jpeg)
+
+
