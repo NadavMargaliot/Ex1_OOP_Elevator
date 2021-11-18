@@ -49,4 +49,7 @@ Otherwise the call is not a "high mission call" and then we can just allocate th
 As we can see the "represent elevator" array will become empty! Now whenever the array is empty we'll refill the array the same way as it wasfilled above.
 With this program we can be sure that a call will always have an elevator to allocate to.
 
-![D offline](https://user-images.githubusercontent.com/84914845/142471653-41b577fc-6139-4dfb-a9ac-08b26a7f43ff.png)
+Diagram of the classes:
+![WhatsApp Image 2021-11-18 at 20 26 18](https://user-images.githubusercontent.com/84914845/142474852-654ee94e-9bfa-4e54-8d97-547f3414a705.jpeg)
+
+
