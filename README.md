@@ -1,4 +1,3 @@
-![D offline](https://user-images.githubusercontent.com/84914845/142471653-41b577fc-6139-4dfb-a9ac-08b26a7f43ff.png)
 # Ex1_OOP_Elevator
 second assignment 
 
@@ -48,4 +47,6 @@ We are looking at a call. If the call is a "high mission call" we allocate this 
 Each time we allocate an elevator we'll remove one occurrence of the number that represents this elevator from the "represent elevator" array.
 Otherwise the call is not a "high mission call" and then we can just allocate the call to one elevator from the "represent elevator" array.
 As we can see the "represent elevator" array will become empty! Now whenever the array is empty we'll refill the array the same way as it wasfilled above.
-With this program we can be sure that a call will always have an elevator to allocate to
+With this program we can be sure that a call will always have an elevator to allocate to.
+
+![D offline](https://user-images.githubusercontent.com/84914845/142471653-41b577fc-6139-4dfb-a9ac-08b26a7f43ff.png)
